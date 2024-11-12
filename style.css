@@ -1,0 +1,24 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+    font-family: "Noto Sans", sans-serif;
+    font-optical-sizing: auto;
+}
+
+.statusSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    margin: 0 3em;
+    padding: 0.5em 0;
+    border-radius: 0.5em;
+    background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
+    width: 25em;
+}
+
+.statusSection * {
+    padding: 0 1em;
+}
