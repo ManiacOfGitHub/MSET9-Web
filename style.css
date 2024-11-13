@@ -7,6 +7,10 @@ body {
     font-optical-sizing: auto;
 }
 
+#status-bar {
+    z-index: 1065;
+}
+
 .statusSection {
     display: flex;
     align-items: center;
@@ -16,9 +20,32 @@ body {
     padding: 0.5em 0;
     border-radius: 0.5em;
     background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
-    width: 25em;
+}
+
+#supportSection.showSupport {
+    z-index: 1060;
+}
+
+#supportSection.showSupport::after {
+    content: "arrow_upward";
+    position: absolute;
+    top: 75%;
+    font-family: 'Material Symbols Outlined';
+    font-size: 5em;
+}
+
+#select-sd-section {
+    min-width: 854px;
 }
 
 .statusSection * {
     padding: 0 1em;
 }
+.fake-weird-backdrop {
+    width: 0px;
+}
+.modal-open .fake-weird-backdrop {
+    width: 100%!important;
+    opacity: 0.5;
+}
+

@@ -21,24 +21,60 @@
                 <span class="material-symbols-outlined" id="networkStatusIcon"></span>
                 <span id="networkStatusText"></span>
             </div>
-            <div class="statusSection">
+            <div class="statusSection btn" id="supportSection">
                 <span class="material-symbols-outlined">contact_support</span>
-                <span id="supportIdText">MW100</span>
+                <span id="supportIdText"></span>
             </div>
+            <div class="modal-backdrop fade w-100 h-100 position-absolute fake-weird-backdrop"></div>
         </div>
         <div class="container d-flex align-items-center justify-content-center h-100">
-            <div class="bg-body-secondary rounded text-center p-3" id="main-area">
+            <div class="bg-body-secondary rounded text-center p-3 m-3" id="main-area">
                 <div id="welcome-section">
                     <h1>Welcome to MSET9-Web</h1>
                     <hr>
                     <p id="welcomeStatus"></p>
                     <noscript>
                         <p>Please <a href="https://www.enable-javascript.com/">enable JavaScript</a> as it is required to use this guide.</p>
-                        <p>Alternatively, use <a href="https://bluehax.xyz">an alternate exploit</a></p>
+                        <p>Alternatively, use <a href="https://3ds.hacks.guide/get-started.html">an alternate exploit</a></p>
                     </noscript>
-                    <p id="return" style="display: none;"><a href="https://bluehax.xyz">Return to bluehax</a></p>
+                    <button class="btn btn-primary d-none" id="showQuickNotes">Continue</button>
+                    <p id="return" style="display: none;"><a href="https://3ds.hacks.guide/get-started.html">Return to Get Started</a></p>
+                </div>
+                <div id="select-sd-section" style="display: none;">
+                    <h1>Select SD card</h1>
+                    <hr>
+                    <p>Please select the root of your SD card to continue.</p>
+                    <button class="btn btn-primary" id="select-sd-button">
+                        Select SD
+                    </button>
+                </div>
+            </div>
+            <div class="bg-body-secondary rounded text-center p-3 m-3" id="secondary-area" style="display: none;">
+                <div id="video-tutorial-section" style="display: none;">
+                    <h1>Video Tutorial</h1>
+                    <p>This will show you step-by-step instructions on how to follow this segment of the guide.</p>
+                    <hr>
+                    <video width="854" height="480" autoplay loop controls>
+                        <source src="" type="video/mp4" id="video-tutorial-source">
+                    </video>
                 </div>
             </div>  
+        </div>
+        <div class="modal fade" tabindex="-1" id="quickNotes">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="quickNotesTitle">Some quick notes before we begin</h1>
+                    </div>
+                    <div class="modal-body" id="quickNotesBody">
+                        <p>While much effort has been put in to ensure user data is not lost, SD corruption is still possible. It is strongly recommended that you make a backup of the Nintendo 3DS folder to another device before using this guide.</p>
+                        <p>Alternatively, you can also use <a href="https://3ds.hacks.guide/get-started.html">an alternate exploit</a>, however, do note that they are also not completely immune to these issues.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="quickNotesContinue">Continue</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
