@@ -34,9 +34,6 @@ body {
     font-size: 5em;
 }
 
-#select-sd-section {
-    min-width: 854px;
-}
 
 .statusSection * {
     padding: 0 1em;
@@ -49,3 +46,6 @@ body {
     opacity: 0.5;
 }
 
+#main-container>* {
+    width: 50%;
+}

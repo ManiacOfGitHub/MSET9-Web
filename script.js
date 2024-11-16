@@ -4,6 +4,8 @@ var m9status = {
     sdInserted: false,
     supportCode: "MWS00"
 };
+var sdRootHandle;
+var quickNotesState = 0;
 $(document).ready(async()=>{
     if(!window["showDirectoryPicker"]) {
         $("#welcomeStatus").text("Your browser is incompatible with this web application.");
@@ -11,6 +13,7 @@ $(document).ready(async()=>{
         m9status.supportCode = "MWE01";
         return;
     }
+    setupBonkPanel();
 
     setInterval(function() {
         if(navigator.onLine) {
@@ -23,7 +26,10 @@ $(document).ready(async()=>{
             $("#networkStatusText").text("Disconnected");
         }
         if(m9status.sdSelected) {
-            
+            if(m9status.sdInserted) {
+            } else {
+
+            }
         } else {
             m9status.sdInserted = false;
             $("#sdStatusIcon").text("pending");
@@ -36,30 +42,38 @@ $(document).ready(async()=>{
 
     $("#welcomeStatus").text("Power off your console and insert your SD card into this device, then press Continue.");
     $("#showQuickNotes").removeClass("d-none");
-    var quickNotesModal = new bootstrap.Modal("#quickNotes", {backdrop:'static',keyboard:false});
+    window.quickNotesModal = new bootstrap.Modal("#quickNotes", {backdrop:'static',keyboard:false});
     $("#showQuickNotes").click(()=>{
-        quickNotesModal.show();
         $("#welcome-section").hide();
-        $("#main-area").hide();
-    });
-    var quickNotesState = 0;
-    $("#quickNotesContinue").click(()=>{
-        if(quickNotesState == 0) {
-            quickNotesState = 1;
-            $("#quickNotesTitle").text("Get Help!");
-            $("#quickNotesBody").text("If you need assistance at any point during this guide, click on the support section as shown on the top right of this page.");
-            $("#supportSection").addClass("showSupport");
-        } else if(quickNotesState == 1) {
-            quickNotesState = 2;
-            $("#quickNotesTitle").text("MSET9-Web v0beta");
-            $("#quickNotesBody").text("This web application is still in early beta, so there are likely going to be issues. Again, I cannot stress this enough, make a backup of any important data before beginning.");
-            $("#supportSection").removeClass("showSupport");
-        } else if(quickNotesState == 2) {
-            quickNotesModal.hide();
+        if(!localStorage.getItem("seenQuickNotes")) {
+            quickNotesModal.show();
+            $("#main-area").hide();
+        } else {
             selectSdPrompt();
         }
-    })
+    });
+    $("#quickNotesContinue").click(handleQuickNotesContinue);
 });
+
+
+function handleQuickNotesContinue() {
+    if(quickNotesState == 0) {
+        quickNotesState = 1;
+        $("#quickNotesTitle").text("Get Help!");
+        $("#quickNotesBody").text("If you need assistance at any point during this guide, click on the support section as shown on the top right of this page.");
+        $("#supportSection").addClass("showSupport");
+    } else if(quickNotesState == 1) {
+        quickNotesState = 2;
+        $("#quickNotesTitle").text("MSET9-Web v0beta");
+        $("#quickNotesBody").text("This web application is still in early beta, so there are likely going to be issues. Again, I cannot stress this enough, make a backup of any important data before beginning.");
+        $("#supportSection").removeClass("showSupport");
+    } else if(quickNotesState == 2) {
+        quickNotesModal.hide();
+        localStorage.setItem("seenQuickNotes","true");
+        selectSdPrompt();
+    }
+}
+
 
 function selectSdPrompt() {
     $("#select-sd-section").show();
@@ -68,7 +82,47 @@ function selectSdPrompt() {
     $("#video-tutorial-section").show();
     $("#video-tutorial-source")[0].parentElement.load();
     $("#secondary-area").show();
-    $("#select-sd-button").click(()=>{
+    $("#select-sd-button").click(async()=>{
+        var handle = await showDirectoryPicker({mode:"readwrite"});
         alert("not implemented\n\np.s. bonk gabbi lmao");
     });
+}
+
+
+var bonkPanel = {
+    position: 0,
+    keyword: "bonk",
+    panel: null
+}
+async function setupBonkPanel() {
+    $("#clearLocalStorage").click(()=>{
+        devConfirmContinue(()=>{
+            localStorage.clear();
+            alert("Cleared localStorage");
+        })
+    });
+
+    bonkPanel.panel = new bootstrap.Modal("#bonkPanel");
+    $(document).keydown(event=>{
+        if(event.key==bonkPanel.keyword[bonkPanel.position]) {
+            bonkPanel.position++;
+        } else {
+            bonkPanel.position = 0;
+        }
+        if(bonkPanel.position==bonkPanel.keyword.length) {
+            bonkPanel.position = 0;
+            bonkPanel.panel.show();
+        }
+    });
+    $("#closeBonkPanel").click(()=>{
+        bonkPanel.panel.hide();
+    })
+}
+
+function devConfirmContinue(callback) {
+    if(prompt("Are you sure? (y/n)")=="y") {
+        callback();
+    } else {
+        alert("Cancelled.");
+    }
 }

@@ -27,7 +27,7 @@
             </div>
             <div class="modal-backdrop fade w-100 h-100 position-absolute fake-weird-backdrop"></div>
         </div>
-        <div class="container d-flex align-items-center justify-content-center h-100">
+        <div class="container d-flex align-items-center justify-content-center h-100" id="main-container">
             <div class="bg-body-secondary rounded text-center p-3 m-3" id="main-area">
                 <div id="welcome-section">
                     <h1>Welcome to MSET9-Web</h1>
@@ -54,7 +54,7 @@
                     <h1>Video Tutorial</h1>
                     <p>This will show you step-by-step instructions on how to follow this segment of the guide.</p>
                     <hr>
-                    <video width="854" height="480" autoplay loop controls>
+                    <video width="100%" autoplay loop controls>
                         <source src="" type="video/mp4" id="video-tutorial-source">
                     </video>
                 </div>
@@ -72,6 +72,24 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="quickNotesContinue">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="bonkPanel" tabindex="-1">
+            <div class="modal-dialog modal-xl modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Bonk Panel</h1>
+                    </div>
+                    <div class="modal-body">
+                        <b>Be careful when using these commands.</b>
+                        <hr>
+                        <h5>General Cool Stuff</h5>
+                        <button id="clearLocalStorage" class="btn btn-danger">Clear Local Storage</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" id="closeBonkPanel">Close</button>
                     </div>
                 </div>
             </div>
