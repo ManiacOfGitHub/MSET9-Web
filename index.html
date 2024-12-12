@@ -48,6 +48,11 @@
                         Select SD
                     </button>
                 </div>
+                <div id="model-message-section" style="display: none;">
+                    <h1>Select Console Model</h1>
+                    <hr>
+                    <p>Please select the model of your console from below.</p>
+                </div>
             </div>
             <div class="bg-body-secondary rounded text-center p-3 m-3" id="secondary-area" style="display: none;">
                 <div id="video-tutorial-section" style="display: none;">
@@ -58,6 +63,9 @@
                         <source src="" type="video/mp4" id="video-tutorial-source">
                     </video>
                 </div>
+            </div>
+            <div id="model-select-section" style="display: none;">
+
             </div>  
         </div>
         <div class="modal fade" tabindex="-1" id="quickNotes">
@@ -76,11 +84,25 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="bonkPanel" tabindex="-1">
+        <div class="modal fade" id="infoModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="infoTitle"></h1>
+                    </div>
+                    <div class="modal-body" id="infoBody">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="closeInfo">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="devPanel" tabindex="-1">
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5">Bonk Panel</h1>
+                        <h1 class="modal-title fs-5">Developer Panel</h1>
                     </div>
                     <div class="modal-body">
                         <b>Be careful when using these commands.</b>
@@ -89,13 +111,14 @@
                         <button id="clearLocalStorage" class="btn btn-danger">Clear Local Storage</button>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" id="closeBonkPanel">Close</button>
+                        <button class="btn btn-primary" id="closedevPanel">Close</button>
                     </div>
                 </div>
             </div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="utils.js"></script>
         <script src="script.js"></script>
     </body>
 </html>

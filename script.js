@@ -13,7 +13,7 @@ $(document).ready(async()=>{
         m9status.supportCode = "MWE01";
         return;
     }
-    setupBonkPanel();
+    setupDevPanel();
 
     setInterval(function() {
         if(navigator.onLine) {
@@ -78,23 +78,22 @@ function handleQuickNotesContinue() {
 function selectSdPrompt() {
     $("#select-sd-section").show();
     $("#main-area").show();
-    $("#video-tutorial-source").attr("src","assets/tutorials/select-sd-windows.mp4");
+    $("#video-tutorial-source").attr("src","assets/tutorials/windows/select-sd.mp4");
     $("#video-tutorial-section").show();
     $("#video-tutorial-source")[0].parentElement.load();
     $("#secondary-area").show();
     $("#select-sd-button").click(async()=>{
         var handle = await showDirectoryPicker({mode:"readwrite"});
-        alert("not implemented\n\np.s. bonk gabbi lmao");
     });
 }
 
 
-var bonkPanel = {
+var devPanel = {
     position: 0,
-    keyword: "bonk",
+    keyword: "dev",
     panel: null
 }
-async function setupBonkPanel() {
+async function setupDevPanel() {
     $("#clearLocalStorage").click(()=>{
         devConfirmContinue(()=>{
             localStorage.clear();
@@ -102,27 +101,20 @@ async function setupBonkPanel() {
         })
     });
 
-    bonkPanel.panel = new bootstrap.Modal("#bonkPanel");
+    devPanel.panel = new bootstrap.Modal("#devPanel");
     $(document).keydown(event=>{
-        if(event.key==bonkPanel.keyword[bonkPanel.position]) {
-            bonkPanel.position++;
+        if(event.key==devPanel.keyword[devPanel.position]) {
+            devPanel.position++;
         } else {
-            bonkPanel.position = 0;
+            devPanel.position = 0;
         }
-        if(bonkPanel.position==bonkPanel.keyword.length) {
-            bonkPanel.position = 0;
-            bonkPanel.panel.show();
+        if(devPanel.position==devPanel.keyword.length) {
+            devPanel.position = 0;
+            devPanel.panel.show();
         }
     });
-    $("#closeBonkPanel").click(()=>{
-        bonkPanel.panel.hide();
+    $("#closedevPanel").click(()=>{
+        devPanel.panel.hide();
     })
 }
 
-function devConfirmContinue(callback) {
-    if(prompt("Are you sure? (y/n)")=="y") {
-        callback();
-    } else {
-        alert("Cancelled.");
-    }
-}
