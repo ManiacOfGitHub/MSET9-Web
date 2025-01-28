@@ -42,12 +42,11 @@ $(document).ready(async()=>{
 
     $("#welcomeStatus").text("Power off your console and insert your SD card into this device, then press Continue.");
     $("#showQuickNotes").removeClass("d-none");
-    window.quickNotesModal = new bootstrap.Modal("#quickNotes", {backdrop:'static',keyboard:false});
-    $("#showQuickNotes").click(()=>{
+    $("#showQuickNotes").click(async()=>{
         $("#welcome-section").hide();
         if(!localStorage.getItem("seenQuickNotes")) {
-            quickNotesModal.show();
             $("#main-area").hide();
+            await loadScript("scripts/stage0-quickNotes.js");
         } else {
             selectSdPrompt();
         }

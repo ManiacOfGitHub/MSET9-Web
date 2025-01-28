@@ -26,3 +26,8 @@ var quickNotesDialog = {
         }
     ]
 }
+
+showDialog(quickNotesDialog).then(()=>{
+    localStorage.setItem("seenQuickNotes","true");
+    selectSdPrompt();
+});
